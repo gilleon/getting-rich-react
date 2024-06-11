@@ -1,5 +1,5 @@
 export default function UserInput({ handleChangedValues, userInput }) {
-  function Input({ labelName, inputValue }) {
+  function Input({ labelName, inputValue, onChange }) {
     return (
       <p>
         <label>{labelName}</label>
@@ -7,7 +7,7 @@ export default function UserInput({ handleChangedValues, userInput }) {
           type="number"
           value={inputValue}
           required
-          onChange={(e) => handleChangedValues("inputValue", e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
         />
       </p>
     );
@@ -19,18 +19,31 @@ export default function UserInput({ handleChangedValues, userInput }) {
         <Input
           labelName="Initial Investment"
           inputValue={userInput.initialInvestment}
+          onChange={(newValue) =>
+            handleChangedValues("initialInvestment", newValue)
+          }
         />
         <Input
           labelName="Annual Investment"
           inputValue={userInput.annualInvestment}
+          onChange={(newValue) =>
+            handleChangedValues("annualInvestment", newValue)
+          }
         />
       </div>
       <div className="input-group">
         <Input
           labelName="Expected Return"
           inputValue={userInput.expectedReturn}
+          onChange={(newValue) =>
+            handleChangedValues("expectedReturn", newValue)
+          }
         />
-        <Input labelName="Duration" inputValue={userInput.duration} />
+        <Input
+          labelName="Duration"
+          inputValue={userInput.duration}
+          onChange={(newValue) => handleChangedValues("duration", newValue)}
+        />
       </div>
     </section>
   );
